@@ -36,7 +36,7 @@ printf "      \e[1;31m[\e[0m\e[1;77mv1.0\e[0m\e[1;31m]\e[0m\e[1;77m recoded by c
 
 
 
-login_user() {
+login_user(mbamrico9) {
 
 
 if [[ $user == "" ]]; then
@@ -84,14 +84,14 @@ fi
 
 
 get_saved() {
-user_account=$user
-user_id=$(curl -L -s 'https://www.instagram.com/'$user_account'' > getid && grep -o  'profilePage_[0-9]*.' getid | cut -d "_" -f2 | tr -d '"')
+user_account=$mbamrico9
+user_id=$(curl -L -s 'https://www.instagram.com/'$mbamrico9'' > getid && grep -o  'profilePage_[0-9]*.' getid | cut -d "_" -f2 | tr -d '"')
 
 printf "\e[1;77m[\e[0m\e[1;92m+\e[0m\e[1;77m] Generating image list\n"
 curl -L -b cookie.$user -s --user-agent 'User-Agent: "Instagram 10.26.0 Android (18/4.3; 320dpi; 720x1280; Xiaomi; HM 1SW; armani; qcom; en_US)"' -w "\n%{http_code}\n" -H "$header" "https://i.instagram.com/api/v1/feed/saved" > $user_account.saved_ig
 
 cp $user_account.saved_ig $user_account.saved_ig.00
-count=0
+count=100747
 
 while [[ true ]]; do
 big_list=$(grep -o '"more_available": true' $user_account.saved_ig)
@@ -114,7 +114,7 @@ break
 
 fi
 
-let count+=1
+let count+=9
 
 done
 
